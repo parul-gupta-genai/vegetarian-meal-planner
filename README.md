@@ -15,6 +15,17 @@ By analyzing your location, local weather, regional holidays, and medical constr
 - **Culturally Relevant**: Prioritizes recipes authentic to your selected region (e.g., entering "IT" serves Pasta Primavera, "IN" serves Palak Paneer).
 - **Exact Servings**: Recommends exact fractional serving sizes (e.g., "1.2 Servings") to perfectly hit your macro goals.
 
+## 📁 Project Structure
+
+```text
+vegetarian-meal-planner/
+├── index.html     # Main user interface and form
+├── styles.css     # Premium styling and design system
+├── app.js         # Core application logic and API integration
+├── meals_db.js    # Static database of vegetarian recipes
+└── README.md      # Project documentation
+```
+
 ## 📂 Architecture & File Flow
 
 The application is built using a modern, lightweight, no-build vanilla stack (HTML/CSS/JS) to ensure maximum performance and portability.
