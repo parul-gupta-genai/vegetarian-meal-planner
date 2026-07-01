@@ -118,6 +118,9 @@ def generate_plan():
         "disease": disease
     }
 
+    # Personal event tags that should ONLY show on those special days
+    PERSONAL_EVENT_TAGS = {'birthday', 'anniversary', 'birthday special', 'anniversary special'}
+
     # Now filter meals
     def filter_meals(m_type):
         valid = [m for m in MEALS if m.get('type') == m_type]
@@ -130,13 +133,22 @@ def generate_plan():
         # non-vegetarian: no filter, show all
 
         if disease != 'none':
-            safe = [m for m in valid if disease in m.get('safeFor', [])]
+            safe = [m for m in valid if disease in m.get('safeFor', [])]\
+            
             if safe: valid = safe
         
-        # Festival
+        # Festival logic
         if festival:
+            # Boost: prefer meals tagged for this festival
             fest_matches = [m for m in valid if festival.lower() in [f.lower() for f in m.get('festivals', [])]]
             if fest_matches: valid = fest_matches
+        else:
+            # No festival today — EXCLUDE meals that are ONLY for personal events (Birthday/Anniversary)
+            # A meal is "personal event only" if ALL its festival tags are personal event tags
+            def is_personal_event_only(m):
+                tags = {f.lower() for f in m.get('festivals', [])}
+                return bool(tags) and tags.issubset(PERSONAL_EVENT_TAGS)
+            valid = [m for m in valid if not is_personal_event_only(m)]
         
         # Country
         country_matches = [m for m in valid if country in m.get('countries', [])]
