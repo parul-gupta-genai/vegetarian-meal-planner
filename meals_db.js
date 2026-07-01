@@ -78,6 +78,19 @@ const mealsDB = [
         festivals: [],
         countries: ["UK", "IE"]
     },
+    {
+        id: "b7",
+        type: "Breakfast",
+        title: "High Protein Paneer-Stuffed Besan Chilla",
+        desc: "Savory chickpea flour pancakes stuffed with spiced crumbled paneer.",
+        cals: 380,
+        protein: 24,
+        carbs: 40,
+        fat: 14,
+        weather: ["all", "hot", "warm"],
+        festivals: [],
+        countries: ["IN"]
+    },
 
     // LUNCH
     {
@@ -157,6 +170,19 @@ const mealsDB = [
         weather: ["warm", "cool"],
         festivals: [],
         countries: ["UK", "IE", "AU"]
+    },
+    {
+        id: "l7",
+        type: "Lunch",
+        title: "Besan Chilla & Sprouted Moong Salad",
+        desc: "Nutrient-dense savory chickpea pancakes served with a high-protein sprouted lentil salad.",
+        cals: 450,
+        protein: 26,
+        carbs: 55,
+        fat: 15,
+        weather: ["all", "warm"],
+        festivals: [],
+        countries: ["IN"]
     },
 
     // DINNER
