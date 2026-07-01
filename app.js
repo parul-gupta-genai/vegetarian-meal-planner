@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const festivalName = document.getElementById('festivalName');
     const targetCaloriesEl = document.getElementById('targetCalories');
     const targetProteinValEl = document.getElementById('targetProteinVal');
+    const bmiValEl = document.getElementById('bmiVal');
+    const bmiCategoryEl = document.getElementById('bmiCategory');
     const mealPlanContainer = document.querySelector('.meal-plan');
     const mealCardTemplate = document.getElementById('mealCardTemplate');
     
@@ -92,14 +94,20 @@ document.addEventListener('DOMContentLoaded', () => {
             
             let targetCalories = tdee;
             let goalText = "Maintenance Target";
+            let bmiText = "Normal Weight";
             
             if (bmi >= 25) {
                 targetCalories = tdee - 500; // Caloric deficit for weight loss
                 goalText = "Weight Loss Target";
+                bmiText = bmi >= 30 ? "Obese" : "Overweight";
             } else if (bmi < 18.5) {
                 targetCalories = tdee + 300; // Caloric surplus for healthy weight gain
                 goalText = "Weight Gain Target";
+                bmiText = "Underweight";
             }
+            
+            if (bmiValEl) bmiValEl.textContent = bmi.toFixed(1);
+            if (bmiCategoryEl) bmiCategoryEl.textContent = bmiText;
             
             // Safety limits
             const safeMin = gender === 'male' ? 1500 : 1200;
@@ -272,9 +280,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sort by how close they are to the target calories
         const sorted = [...meals].sort((a, b) => Math.abs(a.cals - target) - Math.abs(b.cals - target));
         
-        // Pick randomly from the top 3 closest meals to introduce variety!
+        // Use the current day of the year to rotate meals, ensuring the plan changes *every day*
+        // but stays consistent throughout the same day for easy reference!
         const topN = sorted.slice(0, 3);
-        return topN[Math.floor(Math.random() * topN.length)];
+        const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+        return topN[dayOfYear % topN.length];
     }
 
     function scaleMeal(meal, multiplier) {
