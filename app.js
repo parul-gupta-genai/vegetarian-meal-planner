@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const countryInput = document.getElementById('country');
     const cityInput = document.getElementById('city');
     const diseaseInput = document.getElementById('disease');
+    const birthdateInput = document.getElementById('birthdate');
+    const anniversaryInput = document.getElementById('anniversary');
     
     // Output Elements
     const weatherIcon = document.getElementById('weatherIcon');
@@ -144,9 +146,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const city = cityInput.value.trim();
             const country = countryInput.value.trim().toUpperCase();
             const disease = diseaseInput.value;
+            const birthdate = birthdateInput ? birthdateInput.value : '';
+            const anniversary = anniversaryInput ? anniversaryInput.value : '';
             
             const context = await getContext(city, country);
             context.disease = disease;
+            
+            // Check for personal events (MM-DD)
+            const today = new Date();
+            const todayStr = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            
+            if (birthdate && birthdate.substring(5) === todayStr) {
+                context.festival = "Birthday";
+            } else if (anniversary && anniversary.substring(5) === todayStr) {
+                context.festival = "Anniversary";
+            }
             
             // 3. Generate Meal Plan
             const mealPlan = generateMealPlan(targetCalories, context);
