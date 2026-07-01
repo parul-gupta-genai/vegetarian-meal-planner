@@ -109,6 +109,12 @@
                     </div>
                 </div>
 
+                <div class="input-group" style="margin-bottom: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                    <label for="apiKey">Spoonacular API Key (Optional)</label>
+                    <input type="text" id="apiKey" placeholder="Enter Spoonacular Key for live dynamic recipes">
+                    <small>If provided, fetches thousands of real live recipes. If left blank, uses local database.</small>
+                </div>
+
                 <button type="submit" class="btn-primary" id="generateBtn">
                     <span>Generate Meal Plan</span>
                     <i class="ri-magic-line"></i>
@@ -185,11 +191,11 @@
         </div>
     </main>
 
-    <!-- Template for meal cards -->
     <template id="mealCardTemplate">
         <div class="meal-card">
             <div class="meal-image-placeholder">
-                <i class="ri-restaurant-line"></i>
+                <img class="meal-live-image" src="" alt="Recipe" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                <i class="ri-restaurant-line default-icon"></i>
             </div>
             <div class="meal-content">
                 <div class="meal-header">
@@ -212,8 +218,8 @@
     </template>
 
     <!-- Scripts -->
-    <script src="meals_db.js?v=8"></script>
-    <script src="app.js?v=8"></script>
+    <script src="meals_db.js?v=9"></script>
+    <script src="app.js?v=9"></script>
 </body>
 
 </html>

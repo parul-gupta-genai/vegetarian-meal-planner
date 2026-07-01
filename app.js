@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const diseaseInput = document.getElementById('disease');
     const birthdateInput = document.getElementById('birthdate');
     const anniversaryInput = document.getElementById('anniversary');
+    const apiKeyInput = document.getElementById('apiKey');
     
     // Output Elements
     const weatherIcon = document.getElementById('weatherIcon');
@@ -162,8 +163,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 context.festival = "Anniversary";
             }
             
-            // 3. Generate Meal Plan
-            const mealPlan = generateMealPlan(targetCalories, context);
+            // 3. Generate Meal Plan (Static or Dynamic)
+            const apiKey = apiKeyInput ? apiKeyInput.value.trim() : '';
+            let mealPlan;
+            if (apiKey) {
+                btn.innerHTML = '<span>Fetching Live Recipes...</span><i class="ri-loader-4-line spin"></i>';
+                mealPlan = await generateLiveMealPlan(apiKey, targetCalories, context);
+            } else {
+                mealPlan = generateMealPlan(targetCalories, context);
+            }
             
             // 4. Render Results
             renderResults(mealPlan, context);
@@ -237,6 +245,71 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         return { weather, festival, country: countryCode };
+    }
+
+    async function fetchSpoonacularMeal(apiKey, type, maxCals, context) {
+        let intolerances = '';
+        if (context.disease === 'Celiac') intolerances = '&intolerances=gluten';
+        // Note: We can add more complex mappings here, but diet=vegetarian is baseline
+        
+        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&diet=vegetarian${intolerances}&type=${type}&maxCalories=${Math.floor(maxCals + 100)}&addRecipeNutrition=true&number=3&sort=random`;
+        
+        const res = await fetch(url);
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.message || 'Spoonacular API Error');
+        }
+        const data = await res.json();
+        
+        if (!data.results || data.results.length === 0) {
+            throw new Error(`No ${type} recipes found from Spoonacular.`);
+        }
+        
+        const recipe = data.results[0];
+        const nutrients = recipe.nutrition.nutrients;
+        
+        const getNutrient = (name) => {
+            const n = nutrients.find(x => x.name.toLowerCase() === name.toLowerCase());
+            return n ? n.amount : 0;
+        };
+
+        return {
+            title: recipe.title,
+            desc: `Ready in ${recipe.readyInMinutes} mins. (Live Recipe)`,
+            cals: getNutrient('calories'),
+            protein: getNutrient('protein'),
+            carbs: getNutrient('carbohydrates'),
+            fat: getNutrient('fat'),
+            liveImage: recipe.image
+        };
+    }
+
+    async function generateLiveMealPlan(apiKey, targetCals, context) {
+        const targetB = targetCals * 0.25;
+        const targetL = targetCals * 0.35;
+        const targetD = targetCals * 0.40;
+
+        try {
+            const [breakfast, lunch, dinner] = await Promise.all([
+                fetchSpoonacularMeal(apiKey, 'breakfast', targetB, context),
+                fetchSpoonacularMeal(apiKey, 'main course', targetL, context),
+                fetchSpoonacularMeal(apiKey, 'main course', targetD, context)
+            ]);
+
+            const bMult = targetB / (breakfast.cals || targetB);
+            const lMult = targetL / (lunch.cals || targetL);
+            const dMult = targetD / (dinner.cals || targetD);
+
+            return {
+                breakfast: scaleMeal(breakfast, bMult),
+                lunch: scaleMeal(lunch, lMult),
+                dinner: scaleMeal(dinner, dMult)
+            };
+        } catch (e) {
+            console.error(e);
+            alert("Failed to fetch live recipes: " + e.message + "\nFalling back to local database.");
+            return generateMealPlan(targetCals, context);
+        }
     }
 
     function generateMealPlan(targetCals, context) {
@@ -352,7 +425,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const meal = plan[mealTime];
             const node = mealCardTemplate.content.cloneNode(true);
             
-            node.querySelector('.meal-type').textContent = meal.type;
+            if (meal.liveImage) {
+                const imgEl = node.querySelector('.meal-live-image');
+                const iconEl = node.querySelector('.default-icon');
+                imgEl.src = meal.liveImage;
+                imgEl.style.display = 'block';
+                iconEl.style.display = 'none';
+            }
+            
+            node.querySelector('.meal-type').textContent = meal.type || mealTime.charAt(0).toUpperCase() + mealTime.slice(1);
             node.querySelector('.meal-title').textContent = meal.title;
             
             let portionText = "";
@@ -372,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add Tags
             const tagsDiv = node.querySelector('.meal-tags');
-            if (context.festival && meal.festivals.some(f => context.festival.toLowerCase().includes(f.toLowerCase()))) {
+            if (context.festival && meal.festivals && meal.festivals.some(f => context.festival.toLowerCase().includes(f.toLowerCase()))) {
                 const tag = document.createElement('span');
                 tag.className = 'tag';
                 tag.style.backgroundColor = 'rgba(245, 158, 11, 0.2)';
@@ -380,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tag.textContent = 'Festive Special';
                 tagsDiv.appendChild(tag);
             }
-            if (meal.weather.includes(context.weather.type) && context.weather.type !== 'all') {
+            if (meal.weather && meal.weather.includes(context.weather.type) && context.weather.type !== 'all') {
                 const tag = document.createElement('span');
                 tag.className = 'tag';
                 tag.style.backgroundColor = 'rgba(59, 130, 246, 0.2)';
