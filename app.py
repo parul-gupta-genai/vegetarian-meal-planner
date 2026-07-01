@@ -125,12 +125,18 @@ def generate_plan():
     def filter_meals(m_type):
         valid = [m for m in MEALS if m.get('type') == m_type]
         
-        # Priority 0: Diet Type Filter (vegetarian, non-vegetarian, vegan)
+        # Priority 0: Diet Type Filter - STRICT
         if diet_type == 'vegan':
-            valid = [m for m in valid if m.get('diet') == 'vegan' or m.get('diet') == 'vegetarian']
-        elif diet_type == 'vegetarian':
+            # Vegan: only meals tagged as 'vegan'
+            vegan_meals = [m for m in valid if m.get('diet') == 'vegan']
+            valid = vegan_meals if vegan_meals else valid  # fallback if no vegan meals
+        elif diet_type == 'non-vegetarian':
+            # Non-veg: only meals tagged as 'non-vegetarian'
+            nonveg_meals = [m for m in valid if m.get('diet') == 'non-vegetarian']
+            valid = nonveg_meals if nonveg_meals else valid  # fallback if no non-veg meals
+        else:
+            # Vegetarian (default): exclude non-vegetarian meals
             valid = [m for m in valid if m.get('diet') != 'non-vegetarian']
-        # non-vegetarian: no filter, show all
 
         if disease != 'none':
             safe = [m for m in valid if disease in m.get('safeFor', [])]\
