@@ -117,6 +117,32 @@ const mealsDB = [
         festivals: [],
         countries: ["IN"]
     },
+    {
+        id: "b10",
+        type: "Breakfast",
+        title: "Peanut Butter & Banana Protein Pancakes",
+        desc: "Kid-friendly whole wheat pancakes made with milk, topped with banana slices and peanut butter.",
+        cals: 400,
+        protein: 18,
+        carbs: 55,
+        fat: 16,
+        weather: ["all", "cold", "cool"],
+        festivals: [],
+        countries: ["US", "UK", "CA", "AU", "IN", "EU"]
+    },
+    {
+        id: "b11",
+        type: "Breakfast",
+        title: "Cheesy Paneer Veggie Roll",
+        desc: "A fun, kid-friendly whole wheat wrap stuffed with hidden veggies, mild spices, and melted cheese with paneer.",
+        cals: 380,
+        protein: 16,
+        carbs: 42,
+        fat: 14,
+        weather: ["all"],
+        festivals: [],
+        countries: ["IN", "US", "UK", "AU"]
+    },
 
     // LUNCH
     {
@@ -236,6 +262,32 @@ const mealsDB = [
         festivals: [],
         countries: ["IN"]
     },
+    {
+        id: "l10",
+        type: "Lunch",
+        title: "Hidden-Veggie Mac and Cheese",
+        desc: "Creamy macaroni and cheese blended with pureed cauliflower and carrots for a kid-friendly nutrient boost.",
+        cals: 500,
+        protein: 20,
+        carbs: 65,
+        fat: 18,
+        weather: ["all", "cold", "cool"],
+        festivals: [],
+        countries: ["US", "UK", "CA", "AU", "IN", "EU"]
+    },
+    {
+        id: "l11",
+        type: "Lunch",
+        title: "Mini Veggie & Cheese Quesadillas",
+        desc: "Kid-sized tortillas melted with mild cheddar and finely chopped mild veggies, served with smooth salsa.",
+        cals: 450,
+        protein: 16,
+        carbs: 45,
+        fat: 22,
+        weather: ["all", "warm"],
+        festivals: [],
+        countries: ["MX", "US", "CA", "AU", "IN"]
+    },
 
     // DINNER
     {
@@ -341,5 +393,31 @@ const mealsDB = [
         weather: ["all"],
         festivals: [],
         countries: ["IN"]
+    },
+    {
+        id: "d9",
+        type: "Dinner",
+        title: "Sweet Potato & Lentil Nuggets",
+        desc: "Kid-friendly baked nuggets made from sweet potatoes and lentils, served with a side of ketchup and peas.",
+        cals: 450,
+        protein: 18,
+        carbs: 60,
+        fat: 12,
+        weather: ["all"],
+        festivals: [],
+        countries: ["US", "UK", "CA", "AU", "IN"]
+    },
+    {
+        id: "d10",
+        type: "Dinner",
+        title: "Vegetarian Meatballs with Spaghetti",
+        desc: "High-protein soy meatballs served over spaghetti with a mild, sweet tomato sauce.",
+        cals: 550,
+        protein: 25,
+        carbs: 75,
+        fat: 16,
+        weather: ["all", "cold", "cool"],
+        festivals: [],
+        countries: ["IT", "US", "UK", "EU", "AU", "IN"]
     }
 ];
