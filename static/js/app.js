@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetProteinValEl = document.getElementById('targetProteinVal');
     const bmiValEl = document.getElementById('bmiVal');
     const bmiCategoryEl = document.getElementById('bmiCategory');
-    const mealPlanContainer = document.querySelector('.meal-plan');
     const mealCardTemplate = document.getElementById('mealCardTemplate');
     
     // Macro Elements
