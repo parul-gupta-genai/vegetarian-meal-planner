@@ -269,9 +269,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getClosestMeal(meals, target) {
-        return meals.reduce((prev, curr) => 
-            Math.abs(curr.cals - target) < Math.abs(prev.cals - target) ? curr : prev
-        );
+        // Sort by how close they are to the target calories
+        const sorted = [...meals].sort((a, b) => Math.abs(a.cals - target) - Math.abs(b.cals - target));
+        
+        // Pick randomly from the top 3 closest meals to introduce variety!
+        const topN = sorted.slice(0, 3);
+        return topN[Math.floor(Math.random() * topN.length)];
     }
 
     function scaleMeal(meal, multiplier) {
