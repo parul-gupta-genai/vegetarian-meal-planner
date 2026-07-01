@@ -91,6 +91,32 @@ const mealsDB = [
         festivals: [],
         countries: ["IN"]
     },
+    {
+        id: "b8",
+        type: "Breakfast",
+        title: "Moong Dal Chilla",
+        desc: "High protein lentil pancakes made from soaked moong dal and spices.",
+        cals: 360,
+        protein: 20,
+        carbs: 45,
+        fat: 10,
+        weather: ["all"],
+        festivals: [],
+        countries: ["IN"]
+    },
+    {
+        id: "b9",
+        type: "Breakfast",
+        title: "Paneer Paratha & Yogurt",
+        desc: "Whole wheat flatbread stuffed with spiced paneer, served with a side of high-protein yogurt.",
+        cals: 420,
+        protein: 22,
+        carbs: 50,
+        fat: 16,
+        weather: ["cold", "cool", "all"],
+        festivals: [],
+        countries: ["IN"]
+    },
 
     // LUNCH
     {
@@ -184,6 +210,32 @@ const mealsDB = [
         festivals: [],
         countries: ["IN"]
     },
+    {
+        id: "l8",
+        type: "Lunch",
+        title: "Rajma Chawal (Kidney Beans & Rice)",
+        desc: "Classic North Indian comfort food: slow-cooked kidney beans in a rich tomato gravy over rice.",
+        cals: 650,
+        protein: 25,
+        carbs: 90,
+        fat: 15,
+        weather: ["all", "cold"],
+        festivals: [],
+        countries: ["IN"]
+    },
+    {
+        id: "l9",
+        type: "Lunch",
+        title: "Soya Chunk Curry & Roti",
+        desc: "Extremely high protein soy chunks cooked in a spicy onion-tomato masala, served with whole wheat roti.",
+        cals: 600,
+        protein: 35,
+        carbs: 70,
+        fat: 18,
+        weather: ["all"],
+        festivals: [],
+        countries: ["IN"]
+    },
 
     // DINNER
     {
@@ -263,5 +315,31 @@ const mealsDB = [
         weather: ["all", "hot"],
         festivals: ["4th of July"],
         countries: ["US", "CA", "AU"]
+    },
+    {
+        id: "d7",
+        type: "Dinner",
+        title: "Tofu Tikka Masala",
+        desc: "Grilled tofu cubes simmered in a creamy, spiced tomato sauce.",
+        cals: 620,
+        protein: 28,
+        carbs: 55,
+        fat: 25,
+        weather: ["all", "cool"],
+        festivals: ["Diwali", "Holi"],
+        countries: ["IN", "UK", "US"]
+    },
+    {
+        id: "d8",
+        type: "Dinner",
+        title: "Matar Paneer & Quinoa",
+        desc: "A healthy twist on the classic peas and paneer curry, served with high-protein quinoa.",
+        cals: 580,
+        protein: 30,
+        carbs: 60,
+        fat: 24,
+        weather: ["all"],
+        festivals: [],
+        countries: ["IN"]
     }
 ];
