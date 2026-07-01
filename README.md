@@ -28,6 +28,37 @@ vegetarian-meal-planner/
 
 ## 📂 Architecture & File Flow
 
+```mermaid
+graph TD
+    A[User Inputs Biometrics & Location] --> B{Calculate Health Metrics}
+    B -->|BMI < 18.5| C[Add Caloric Surplus]
+    B -->|18.5 <= BMI < 25| D[Maintain Calories]
+    B -->|BMI >= 25| E[Apply Caloric Deficit]
+    
+    C --> F[Fetch Context APIs]
+    D --> F
+    E --> F
+    
+    F --> G[Weather Data from OpenMeteo]
+    F --> H[Holiday Data from Nager.Date]
+    
+    G --> I[Filter Recipe Database]
+    H --> I
+    
+    I --> J{Prioritize Matches}
+    J --> K[1. Medical Condition Compliance]
+    J --> L[2. Festival & Country]
+    J --> M[3. Weather Appropriate]
+    
+    K --> N[Select Top Matches]
+    L --> N
+    M --> N
+    
+    N --> O[Rotate Daily by Calendar Date]
+    O --> P[Calculate Exact Portion Multipliers]
+    P --> Q[Render Personalized Dashboard]
+```
+
 The application is built using a modern, lightweight, no-build vanilla stack (HTML/CSS/JS) to ensure maximum performance and portability.
 
 ### `index.html`
