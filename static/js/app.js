@@ -122,21 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. Update UI with calculated values from Python
             if (bmiValEl) bmiValEl.textContent = data.bmi.toFixed(1);
             
-            let bmiText = "Normal Weight";
             let goalText = "Maintenance Target";
             if (age < 18) {
-                bmiText = "Pediatric BMI";
                 goalText = "Growing Child Maintenance";
-            } else {
-                if (data.bmi >= 25) {
-                    goalText = "Weight Loss Target";
-                    bmiText = data.bmi >= 30 ? "Obese" : "Overweight";
-                } else if (data.bmi < 18.5) {
-                    goalText = "Weight Gain Target";
-                    bmiText = "Underweight";
-                }
+            } else if (data.bmi >= 25) {
+                goalText = "Weight Loss Target";
+            } else if (data.bmi < 18.5) {
+                goalText = "Weight Gain Target";
             }
-            if (bmiCategoryEl) bmiCategoryEl.textContent = bmiText;
+            
+            if (bmiCategoryEl) bmiCategoryEl.textContent = "BMI Score";
             
             targetCaloriesEl.textContent = `${data.targetCalories} kcal`;
             targetCaloriesEl.nextElementSibling.textContent = goalText;
