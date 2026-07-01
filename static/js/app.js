@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const anniversaryInput = document.getElementById('anniversary');
     const apiKeyInput = document.getElementById('apiKey');
     const dietTypeInputs = document.getElementsByName('dietType');
+    const allergyCheckboxes = document.querySelectorAll('.allergy-tag input[type="checkbox"]');
+    const mealPlanContainer = document.getElementById('mealPlanContainer');
     
     // Output Elements
     const weatherIcon = document.getElementById('weatherIcon');
@@ -88,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const apiKey = apiKeyInput ? apiKeyInput.value.trim() : '';
             const dietType = [...dietTypeInputs].find(r => r.checked)?.value || 'vegetarian';
+            const allergies = [...allergyCheckboxes].filter(cb => cb.checked).map(cb => cb.value);
 
             // 1. Fetch from Python Backend
             const pyRes = await fetch('/api/generate_plan', {
@@ -106,7 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     birthdate: birthdateInput ? birthdateInput.value : '',
                     anniversary: anniversaryInput ? anniversaryInput.value : '',
                     apiKey: apiKey,
-                    dietType: dietType
+                    dietType: dietType,
+                    allergies: allergies
                 })
             });
 
@@ -153,6 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 4. Render Results
             renderResults(mealPlan, data.context);
+            
+            // 5. Render Health Analysis
+            renderHealthAnalysis(data.healthAnalysis, data.bmi);
 
             // Switch view
             formSection.classList.add('hidden');
@@ -356,5 +363,66 @@ document.addEventListener('DOMContentLoaded', () => {
         if (code >= 80 && code <= 82) return 'ri-showers-line';
         if (code >= 95 && code <= 99) return 'ri-thunderstorms-line';
         return 'ri-cloud-line';
+    }
+
+    function renderHealthAnalysis(h, bmi) {
+        if (!h) return;
+
+        // BMI Alert
+        const bmiAlert = document.getElementById('bmiAlert');
+        if (h.bmiDanger) {
+            bmiAlert.classList.remove('hidden', 'warning');
+            if (h.bmiAlertType === 'warning') bmiAlert.classList.add('warning');
+            document.getElementById('bmiAlertText').textContent = h.bmiDanger;
+        } else {
+            bmiAlert.classList.add('hidden');
+        }
+
+        // Health Score Circle (conic-gradient animation)
+        const score = h.score;
+        const deg = Math.round((score / 100) * 360);
+        let scoreColor = '#10b981'; // green
+        if (score < 60) scoreColor = '#ef4444';
+        else if (score < 80) scoreColor = '#f59e0b';
+        const circle = document.getElementById('healthScoreCircle');
+        circle.style.background = `conic-gradient(${scoreColor} ${deg}deg, rgba(255,255,255,0.05) ${deg}deg)`;
+        document.getElementById('healthScoreVal').textContent = score;
+        document.getElementById('healthScoreMsg').textContent = h.scoreMsg;
+
+        // Score breakdown pills
+        const breakdown = document.getElementById('scoreBreakdown');
+        breakdown.innerHTML = h.scoreBreakdown.map(b =>
+            `<span class="score-pill ${b.type}">${b.label}</span>`
+        ).join('');
+
+        // Macro ratio bars
+        const setBar = (barId, pctId, pct) => {
+            document.getElementById(barId).style.width = `${Math.min(pct, 100)}%`;
+            document.getElementById(pctId).textContent = `${pct}%`;
+        };
+        setBar('carbRatioBar', 'carbRatioPct', h.carbPct);
+        setBar('protRatioBar', 'protRatioPct', h.protPct);
+        setBar('fatRatioBar', 'fatRatioPct', h.fatPct);
+
+        // Nutrient cards
+        document.getElementById('fiberVal').textContent = `${h.totalFiber} g`;
+        document.getElementById('fiberTarget').textContent = `Target: ${h.fiberTarget}g/day`;
+        const fiberCard = document.getElementById('fiberCard');
+        fiberCard.classList.toggle('over-limit', h.totalFiber < h.fiberTarget * 0.8);
+
+        document.getElementById('sodiumVal').textContent = `${h.totalSodium} mg`;
+        document.getElementById('sodiumTarget').textContent = `Limit: <${h.sodiumTarget}mg/day`;
+        const sodiumCard = document.getElementById('sodiumCard');
+        sodiumCard.classList.toggle('over-limit', h.totalSodium > h.sodiumTarget);
+
+        document.getElementById('hydrationVal').textContent = `${h.hydrationL} L`;
+        document.getElementById('timelineVal').textContent = h.timelineVal;
+        document.getElementById('timelineMsg').textContent = h.timelineMsg;
+
+        // Health tips
+        const tipsEl = document.getElementById('healthTips');
+        tipsEl.innerHTML = h.tips.map(tip =>
+            `<div class="health-tip tip-${tip.type}">${tip.icon} ${tip.text}</div>`
+        ).join('');
     }
 });

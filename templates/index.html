@@ -114,9 +114,41 @@
                     <label for="disease">Medical Condition (Optional)</label>
                     <select id="disease">
                         <option value="none">None</option>
-                        <option value="Diabetes">Diabetes</option>
-                        <option value="Hypertension">Hypertension (High Blood Pressure)</option>
-                        <option value="Celiac">Celiac Disease (Gluten-Free)</option>
+                        <!-- Metabolic -->
+                        <optgroup label="⚡ Metabolic">
+                            <option value="Diabetes">🩸 Diabetes (Type 1 / Type 2)</option>
+                            <option value="Obesity">⚖️ Obesity</option>
+                            <option value="Thyroid_Hypo">🦋 Hypothyroidism (Slow Thyroid)</option>
+                            <option value="Thyroid_Hyper">🦋 Hyperthyroidism (Overactive Thyroid)</option>
+                        </optgroup>
+                        <!-- Cardiovascular -->
+                        <optgroup label="❤️ Cardiovascular">
+                            <option value="Hypertension">💔 Hypertension (High Blood Pressure)</option>
+                        </optgroup>
+                        <!-- Digestive -->
+                        <optgroup label="🫁 Digestive">
+                            <option value="Celiac">🌾 Celiac Disease (Gluten-Free)</option>
+                            <option value="LiverDisease">🫀 Liver Disease (Fatty Liver / Cirrhosis)</option>
+                            <option value="KidneyDisease">🫘 Kidney Disease (CKD)</option>
+                        </optgroup>
+                        <!-- Hormonal / Life Stage -->
+                        <optgroup label="🌸 Hormonal / Life Stage">
+                            <option value="Pregnancy">🤰 Pregnancy</option>
+                            <option value="Menopause">🌡️ Menopause</option>
+                            <option value="KidsGrowth">👶 Kids Growth & Development</option>
+                        </optgroup>
+                        <!-- Musculoskeletal -->
+                        <optgroup label="🦴 Musculoskeletal">
+                            <option value="Arthritis">🦵 Arthritis (Osteoarthritis / Rheumatoid)</option>
+                        </optgroup>
+                        <!-- Mental Health -->
+                        <optgroup label="🧠 Mental Health">
+                            <option value="MentalHealth">🧠 Mental Health (Depression / Anxiety)</option>
+                        </optgroup>
+                        <!-- Oncology -->
+                        <optgroup label="🎗️ Oncology">
+                            <option value="Cancer">🎗️ Cancer (General / During Treatment)</option>
+                        </optgroup>
                     </select>
                 </div>
 
@@ -130,6 +162,16 @@
                         <label for="city">City</label>
                         <input type="text" id="city" required placeholder="e.g. London">
                         <small>For local weather</small>
+                    </div>
+                </div>
+
+                <div class="input-group" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                    <label>Allergies / Intolerances (Optional)</label>
+                    <div class="allergy-grid">
+                        <label class="allergy-tag"><input type="checkbox" id="allergyLactose" value="lactose"> 🥛 Lactose</label>
+                        <label class="allergy-tag"><input type="checkbox" id="allergyNuts" value="nuts"> 🥜 Nuts</label>
+                        <label class="allergy-tag"><input type="checkbox" id="allergySoy" value="soy"> 🫘 Soy</label>
+                        <label class="allergy-tag"><input type="checkbox" id="allergyEgg" value="egg"> 🥚 Egg</label>
                     </div>
                 </div>
 
@@ -187,8 +229,90 @@
                 </div>
             </div>
 
-            <div class="meal-plan">
+            <div class="meal-plan" id="mealPlanContainer">
                 <!-- Meal cards will be injected here -->
+            </div>
+
+            <!-- ===== DIETICIAN HEALTH ANALYSIS PANEL ===== -->
+            <div class="health-analysis-panel" id="healthPanel">
+                <h3><i class="ri-stethoscope-line"></i> Dietician Health Analysis</h3>
+
+                <!-- BMI Alert (shown when BMI is dangerous) -->
+                <div class="bmi-alert hidden" id="bmiAlert">
+                    <i class="ri-error-warning-line"></i>
+                    <span id="bmiAlertText">BMI alert</span>
+                </div>
+
+                <!-- Health Score -->
+                <div class="health-score-section">
+                    <div class="health-score-circle" id="healthScoreCircle">
+                        <span id="healthScoreVal">--</span>
+                        <small>Health Score</small>
+                    </div>
+                    <div class="health-score-details">
+                        <p id="healthScoreMsg">Calculating your health score...</p>
+                        <div class="score-breakdown" id="scoreBreakdown"></div>
+                    </div>
+                </div>
+
+                <!-- Macro Ratio Bars -->
+                <div class="macro-ratios">
+                    <h4>Macro Ratio <span style="font-weight:400; font-size:0.8rem; color: var(--text-muted)">(Ideal: 50% Carbs · 25% Protein · 25% Fat)</span></h4>
+                    <div class="ratio-bar-wrap">
+                        <span>🌾 Carbs</span>
+                        <div class="ratio-bar"><div class="ratio-fill carb-fill" id="carbRatioBar"></div></div>
+                        <span id="carbRatioPct">--%</span>
+                    </div>
+                    <div class="ratio-bar-wrap">
+                        <span>🥩 Protein</span>
+                        <div class="ratio-bar"><div class="ratio-fill prot-fill" id="protRatioBar"></div></div>
+                        <span id="protRatioPct">--%</span>
+                    </div>
+                    <div class="ratio-bar-wrap">
+                        <span>🧈 Fat</span>
+                        <div class="ratio-bar"><div class="ratio-fill fat-fill" id="fatRatioBar"></div></div>
+                        <span id="fatRatioPct">--%</span>
+                    </div>
+                </div>
+
+                <!-- Nutrient Targets Grid -->
+                <div class="nutrient-targets">
+                    <div class="nutrient-card" id="fiberCard">
+                        <i class="ri-plant-line"></i>
+                        <div>
+                            <strong>Fiber</strong>
+                            <span id="fiberVal">-- g</span>
+                            <small id="fiberTarget">Target: 30g/day</small>
+                        </div>
+                    </div>
+                    <div class="nutrient-card" id="sodiumCard">
+                        <i class="ri-drop-line"></i>
+                        <div>
+                            <strong>Sodium</strong>
+                            <span id="sodiumVal">-- mg</span>
+                            <small id="sodiumTarget">Target: &lt;2300mg/day</small>
+                        </div>
+                    </div>
+                    <div class="nutrient-card">
+                        <i class="ri-drop-fill" style="color:#60a5fa"></i>
+                        <div>
+                            <strong>Hydration</strong>
+                            <span id="hydrationVal">-- L</span>
+                            <small>Water per day</small>
+                        </div>
+                    </div>
+                    <div class="nutrient-card">
+                        <i class="ri-calendar-check-line" style="color:#a78bfa"></i>
+                        <div>
+                            <strong>Goal Timeline</strong>
+                            <span id="timelineVal">--</span>
+                            <small id="timelineMsg">weeks to target</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Tips -->
+                <div class="health-tips" id="healthTips"></div>
             </div>
 
             <div class="nutrition-summary">
