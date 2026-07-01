@@ -30,31 +30,38 @@ vegetarian-meal-planner/
 
 ```mermaid
 graph TD
-    A[User Inputs Biometrics & Location] --> B{Calculate Health Metrics}
-    B -->|BMI < 18.5| C[Add Caloric Surplus]
-    B -->|18.5 <= BMI < 25| D[Maintain Calories]
-    B -->|BMI >= 25| E[Apply Caloric Deficit]
+    A[User Inputs Biometrics, Location & Personal Events] --> B{Age Check}
     
-    C --> F[Fetch Context APIs]
+    B -->|Age < 18| PEDIATRIC[Pediatric Maintenance & High Protein]
+    B -->|Age >= 18| ADULT{Calculate Adult BMI}
+    
+    ADULT -->|BMI < 18.5| C[Add Caloric Surplus]
+    ADULT -->|18.5 <= BMI < 25| D[Maintain Calories]
+    ADULT -->|BMI >= 25| E[Apply Caloric Deficit]
+    
+    PEDIATRIC --> F[Fetch Context APIs]
+    C --> F
     D --> F
     E --> F
     
     F --> G[Weather Data from OpenMeteo]
     F --> H[Holiday Data from Nager.Date]
+    F --> EVENT[Check Birthday/Anniversary Match]
     
     G --> I[Filter Recipe Database]
     H --> I
+    EVENT --> I
     
     I --> J{Prioritize Matches}
     J --> K[1. Medical Condition Compliance]
-    J --> L[2. Festival & Country]
+    J --> L[2. Event / Festival / Country]
     J --> M[3. Weather Appropriate]
     
-    K --> N[Select Top Matches]
+    K --> N[Sort by Caloric Closeness]
     L --> N
     M --> N
     
-    N --> O[Rotate Daily by Calendar Date]
+    N --> O[Randomize Top 3 Matches for Variety]
     O --> P[Calculate Exact Portion Multipliers]
     P --> Q[Render Personalized Dashboard]
 ```
