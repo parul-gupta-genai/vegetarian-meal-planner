@@ -280,11 +280,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sort by how close they are to the target calories
         const sorted = [...meals].sort((a, b) => Math.abs(a.cals - target) - Math.abs(b.cals - target));
         
-        // Use the current day of the year to rotate meals, ensuring the plan changes *every day*
-        // but stays consistent throughout the same day for easy reference!
+        // Pick randomly from the top 3 closest meals to introduce variety on every click
         const topN = sorted.slice(0, 3);
-        const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-        return topN[dayOfYear % topN.length];
+        return topN[Math.floor(Math.random() * topN.length)];
     }
 
     function scaleMeal(meal, multiplier) {
