@@ -96,26 +96,39 @@ document.addEventListener('DOMContentLoaded', () => {
             let goalText = "Maintenance Target";
             let bmiText = "Normal Weight";
             
-            if (bmi >= 25) {
-                targetCalories = tdee - 500; // Caloric deficit for weight loss
-                goalText = "Weight Loss Target";
-                bmiText = bmi >= 30 ? "Obese" : "Overweight";
-            } else if (bmi < 18.5) {
-                targetCalories = tdee + 300; // Caloric surplus for healthy weight gain
-                goalText = "Weight Gain Target";
-                bmiText = "Underweight";
+            if (age < 18) {
+                // Pediatric Logic
+                bmiText = "Pediatric BMI (Consult Chart)";
+                goalText = "Growing Child Maintenance";
+            } else {
+                // Adult Logic
+                if (bmi >= 25) {
+                    targetCalories = tdee - 500; // Caloric deficit for weight loss
+                    goalText = "Weight Loss Target";
+                    bmiText = bmi >= 30 ? "Obese" : "Overweight";
+                } else if (bmi < 18.5) {
+                    targetCalories = tdee + 300; // Caloric surplus for healthy weight gain
+                    goalText = "Weight Gain Target";
+                    bmiText = "Underweight";
+                }
             }
             
             if (bmiValEl) bmiValEl.textContent = bmi.toFixed(1);
             if (bmiCategoryEl) bmiCategoryEl.textContent = bmiText;
             
             // Safety limits
-            const safeMin = gender === 'male' ? 1500 : 1200;
-            if (targetCalories < safeMin) targetCalories = safeMin;
+            if (age >= 18) {
+                const safeMin = gender === 'male' ? 1500 : 1200;
+                if (targetCalories < safeMin) targetCalories = safeMin;
+            } else {
+                const childMin = 1000;
+                if (targetCalories < childMin) targetCalories = childMin;
+            }
             
             // Calculate Protein Target based on Age, Weight, and Activity
             let proteinMultiplier = 0.8;
-            if (age >= 60) proteinMultiplier = 1.2; // Increase protein for aging
+            if (age < 18) proteinMultiplier = 1.2; // Growing kids need more protein per kg
+            else if (age >= 60) proteinMultiplier = 1.2; // Increase protein for aging
             else if (activityLevel >= 1.55) proteinMultiplier = 1.4;
             else if (activityLevel >= 1.375) proteinMultiplier = 1.0;
             
