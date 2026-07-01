@@ -1,106 +1,85 @@
-# Context-Aware Vegetarian Meal Planner 🥗
+# V-Planner: Context-Aware Personalized Meal Planner 🥗
 
-A highly personalized, intelligent web application designed to generate vegetarian meal plans tailored not just to your health biometrics, but to your real-world environment. 
+A highly personalized, intelligent full-stack web application designed to generate vegetarian, non-vegetarian, and vegan meal plans tailored to your health biometrics, medical constraints, and real-world environment. 
 
-By analyzing your location, local weather, regional holidays, and medical constraints, this app serves a fully customized daily meal plan with exact macronutrient and caloric targets.
+By analyzing your location, local weather, regional holidays, allergies, and medical conditions, this app serves a fully customized daily meal plan with exact macronutrient targets and a comprehensive dietician health analysis.
 
-## ✨ Features
+## ✨ Features and Use Cases
 
-- **Biometric Health Optimization**: Calculates BMI and Total Daily Energy Expenditure (TDEE). Automatically adjusts targets for weight loss (caloric deficit) or healthy weight gain based on user data.
-- **Age-Adjusted Protein Targets**: Dynamically calculates and increases protein requirements for senior users to help prevent age-related muscle loss.
-- **Medical & Dietary Filters**: Allows users to input medical conditions (e.g., Diabetes, Hypertension, Celiac) and strictly filters the recipe database for safe, compliant meals (like Gluten-Free or Low Sodium options).
+- **Complete Diet Support**: Supports strictly filtered Vegetarian, Non-Vegetarian, and Vegan diet plans.
+- **Biometric Health Optimization**: Calculates BMI, Total Daily Energy Expenditure (TDEE), and Macro Ratios. Automatically adjusts caloric targets for weight loss or healthy weight gain based on user data.
+- **Dietician Health Analysis**: Provides a dynamic "Health Score" circle, macro ratio bars, fiber/sodium tracking, hydration goals, and clinically-relevant advice for 14 different medical conditions.
+- **Medical & Allergen Filters**: Allows users to input medical conditions (e.g., Diabetes, Hypertension, Celiac) and allergies (Lactose, Nuts, Soy, Egg), strictly filtering the database for safe, compliant meals.
 - **Environmental Context**: 
   - Connects to the **OpenMeteo API** to check your city's current weather, suggesting warm meals on cold days and lighter meals on hot days.
-  - Connects to a **Public Holiday API** via your country code to recommend special festive meals (e.g., *Chilaquiles* on Cinco de Mayo, or *Biryani* for Diwali).
-- **Culturally Relevant**: Prioritizes recipes authentic to your selected region (e.g., entering "IT" serves Pasta Primavera, "IN" serves Palak Paneer).
-- **Exact Servings**: Recommends exact fractional serving sizes (e.g., "1.2 Servings") to perfectly hit your macro goals.
+  - Connects to a **Public Holiday API** to recommend special festive meals (e.g., *Biryani* for Diwali or Eid).
+- **Live Recipe Integration**: Optionally connects to the **Spoonacular API** to fetch thousands of live, dynamic recipes if an API key is provided.
+- **Exact Servings**: Recommends fractional serving sizes (e.g., "1.2 Servings") to perfectly hit your macro goals.
 
-## 📁 Project Structure
+## 🛠️ How We Made This (Architecture)
+
+V-Planner is built using a modern **Python (Flask)** backend and a vanilla **HTML/CSS/JS** frontend. This architecture allows complex health algorithms and API fetching to run securely on the server, while the frontend handles the premium, glassmorphism-style reactive UI.
+
+### 📁 Project Structure
 
 ```text
 vegetarian-meal-planner/
-├── index.html     # Main user interface and form
-├── styles.css     # Premium styling and design system
-├── app.js         # Core application logic and API integration
-├── meals_db.js    # Static database of vegetarian recipes
-└── README.md      # Project documentation
+├── app.py                 # Flask Server: Routing, APIs, and Health algorithms
+├── meals.json             # Database of recipes with macro & context metadata
+├── requirements.txt       # Python dependencies (Flask, Requests, Flask-CORS)
+├── static/
+│   ├── css/styles.css     # Premium styling, glassmorphism, animations
+│   └── js/app.js          # Frontend UI logic, form handling, and DOM rendering
+└── templates/
+    └── index.html         # Main user interface template (Jinja2)
 ```
 
-## 📂 Architecture & File Flow
+## 📂 Logical Flow & Diagram
 
 ```mermaid
 graph TD
-    A[User Inputs Biometrics, Location & Personal Events] --> B{Age Check}
+    A[User Inputs Data] -->|Form Submit via JS| B(Flask Backend API)
     
-    B -->|Age < 18| PEDIATRIC[Pediatric Maintenance & High Protein]
-    B -->|Age >= 18| ADULT{Calculate Adult BMI}
+    B --> C{Biometrics Engine}
+    C -->|Calculate| D[BMI, BMR, TDEE & Macros]
+    C -->|Calculate| E[Fiber, Sodium, Hydration Targets]
     
-    ADULT -->|BMI < 18.5| C[Add Caloric Surplus]
-    ADULT -->|18.5 <= BMI < 25| D[Maintain Calories]
-    ADULT -->|BMI >= 25| E[Apply Caloric Deficit]
+    B --> F{Context Engine}
+    F -->|Fetch Weather| G[OpenMeteo API]
+    F -->|Fetch Holidays| H[Nager.Date API]
     
-    PEDIATRIC --> F[Fetch Context APIs]
-    C --> F
-    D --> F
-    E --> F
+    B --> I{Dietician & Filter Engine}
+    I -->|1. Diet Type| J[Veg / Non-Veg / Vegan]
+    I -->|2. Allergies| K[Filter out Lactose/Nuts/Soy/Egg]
+    I -->|3. Medical| L[Ensure SafeFor compliance]
+    I -->|4. Context| M[Match Weather & Festivals]
     
-    F --> G[Weather Data from OpenMeteo]
-    F --> H[Holiday Data from Nager.Date]
-    F --> EVENT[Check Birthday/Anniversary Match]
-    
-    G --> I[Filter Recipe Database]
-    H --> I
-    EVENT --> I
-    
-    I --> J{Prioritize Matches}
-    J --> K[1. Medical Condition Compliance]
-    J --> L[2. Event / Festival / Country]
-    J --> M[3. Weather Appropriate]
-    
-    K --> N[Sort by Caloric Closeness]
+    J --> N[Sort & Select Top Meals]
+    K --> N
     L --> N
     M --> N
     
-    N --> O[Randomize Top 3 Matches for Variety]
-    O --> P[Calculate Exact Portion Multipliers]
-    P --> Q[Render Personalized Dashboard]
+    N --> O[Scale Portions to hit TDEE]
+    O --> P[Generate Dietician Health Tips]
+    
+    P --> Q{Send JSON Response}
+    
+    Q -->|Render UI| R[Frontend Dashboard]
+    R --> S[Display Meal Cards]
+    R --> T[Animate Health Score Circle]
+    R --> U[Show Macro Ratio Bars]
 ```
-
-The application is built using a modern, lightweight, no-build vanilla stack (HTML/CSS/JS) to ensure maximum performance and portability.
-
-### `index.html`
-The core structure of the application. 
-- Contains the beautiful, responsive glassmorphism user interface.
-- Hosts the personalization form for user biometrics, location, and medical constraints.
-- Includes a dynamic hidden `template` element used by JavaScript to inject the final customized meal cards.
-
-### `styles.css`
-The design system of the application.
-- Utilizes CSS variables for quick theming and a cohesive color palette (Emerald green and Amber accents over a Slate dark mode).
-- Implements modern UI paradigms including blur backdrops (`backdrop-filter: blur`), smooth micro-animations on hover, and fully responsive media queries for mobile and desktop viewing.
-
-### `app.js`
-The "brain" of the meal planner. The logical flow is as follows:
-1. **Data Collection**: Reads all biometric and contextual inputs upon form submission.
-2. **Health Math**: Calculates BMR (Mifflin-St Jeor), TDEE, BMI, and the age-adjusted Protein Target. Sets caloric deficits/surpluses.
-3. **API Fetching**: Makes asynchronous calls to external weather and holiday APIs.
-4. **Algorithmic Filtering (`filterMeals`)**: Passes the meal database through strict medical filters (Priority 0), festival matches (Priority 1), country matches (Priority 2), and weather matching (Priority 3).
-5. **Selection & Scaling**: Picks the optimal meals that come closest to your caloric distribution (Breakfast/Lunch/Dinner) and calculates exact serving multipliers to hit the exact target.
-6. **DOM Manipulation**: Clones the HTML template, populates it with the calculated data, and renders the dynamic dashboard.
-
-### `meals_db.js`
-A static, offline-first JSON database of curated vegetarian recipes.
-- Each recipe contains metadata for macros (calories, protein, carbs, fat).
-- Contains context tags mapping recipes to specific weather conditions, festivals, target countries, and medical compliance labels (`safeFor`).
 
 ## 🚀 How to Run Locally
 
-Because the app utilizes local modules and API fetches, it is recommended to run it via a local development server to avoid CORS issues.
-
-1. Ensure you have Python installed.
-2. Open a terminal in the root directory of this project.
-3. Run the following command:
+1. **Install Python 3.x** on your machine.
+2. **Clone the repository** and navigate to the project root directory.
+3. **Install Dependencies**:
    ```bash
-   python -m http.server 8080
+   pip install -r requirements.txt
    ```
-4. Open your web browser and navigate to: `http://localhost:8080`
+4. **Run the Flask Server**:
+   ```bash
+   python app.py
+   ```
+5. **Open your browser** and navigate to: `http://127.0.0.1:5000`
