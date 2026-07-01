@@ -17,7 +17,8 @@
       "UK",
       "AU",
       "CA"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b2",
@@ -38,7 +39,8 @@
     ],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b3",
@@ -62,7 +64,8 @@
       "UK",
       "CA",
       "EU"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b4",
@@ -81,7 +84,8 @@
     ],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b5",
@@ -101,7 +105,8 @@
     "countries": [
       "MX",
       "US"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b6",
@@ -120,7 +125,8 @@
     "countries": [
       "UK",
       "IE"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b7",
@@ -139,7 +145,8 @@
     "festivals": [],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b8",
@@ -156,7 +163,8 @@
     "festivals": [],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b9",
@@ -175,7 +183,8 @@
     "festivals": [],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b10",
@@ -199,7 +208,8 @@
       "AU",
       "IN",
       "EU"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b11",
@@ -219,7 +229,8 @@
       "US",
       "UK",
       "AU"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l1",
@@ -240,7 +251,8 @@
     ],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l2",
@@ -260,7 +272,8 @@
       "CA",
       "UK",
       "AU"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l3",
@@ -280,7 +293,8 @@
       "US",
       "UK",
       "EU"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l4",
@@ -301,7 +315,8 @@
       "MX",
       "US",
       "CA"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l5",
@@ -320,7 +335,8 @@
     ],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l6",
@@ -340,7 +356,8 @@
       "UK",
       "IE",
       "AU"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l7",
@@ -358,7 +375,8 @@
     "festivals": [],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l8",
@@ -376,7 +394,8 @@
     "festivals": [],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l9",
@@ -393,7 +412,8 @@
     "festivals": [],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l10",
@@ -417,7 +437,8 @@
       "AU",
       "IN",
       "EU"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l11",
@@ -439,7 +460,8 @@
       "CA",
       "AU",
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d1",
@@ -461,7 +483,8 @@
     ],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d2",
@@ -485,7 +508,8 @@
       "UK",
       "US",
       "CA"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d3",
@@ -505,7 +529,8 @@
       "IT",
       "US",
       "EU"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d4",
@@ -523,7 +548,8 @@
     "countries": [
       "MX",
       "US"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d5",
@@ -541,7 +567,8 @@
     "festivals": [],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d6",
@@ -563,7 +590,8 @@
       "US",
       "CA",
       "AU"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d7",
@@ -586,7 +614,8 @@
       "IN",
       "UK",
       "US"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d8",
@@ -603,7 +632,8 @@
     "festivals": [],
     "countries": [
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d9",
@@ -624,7 +654,8 @@
       "CA",
       "AU",
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d10",
@@ -648,7 +679,8 @@
       "EU",
       "AU",
       "IN"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b12",
@@ -677,7 +709,8 @@
       "Celiac",
       "Hypertension",
       "Diabetes"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l12",
@@ -705,7 +738,8 @@
       "Diabetes",
       "Celiac",
       "Hypertension"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l13",
@@ -732,7 +766,8 @@
     "safeFor": [
       "Hypertension",
       "Diabetes"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d11",
@@ -760,7 +795,8 @@
     "safeFor": [
       "Celiac",
       "Diabetes"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d12",
@@ -787,7 +823,8 @@
     ],
     "safeFor": [
       "Hypertension"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b13",
@@ -815,7 +852,8 @@
     "safeFor": [
       "Hypertension",
       "Celiac"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b14",
@@ -844,7 +882,8 @@
     "safeFor": [
       "Hypertension",
       "Diabetes"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l14",
@@ -872,7 +911,8 @@
     ],
     "safeFor": [
       "Hypertension"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d13",
@@ -897,7 +937,8 @@
       "IN",
       "EU"
     ],
-    "safeFor": []
+    "safeFor": [],
+    "diet": "vegetarian"
   },
   {
     "id": "d14",
@@ -925,7 +966,8 @@
     "safeFor": [
       "Hypertension",
       "Celiac"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b15",
@@ -950,7 +992,8 @@
       "Diabetes",
       "Hypertension",
       "Celiac"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "b16",
@@ -973,7 +1016,8 @@
     "safeFor": [
       "Diabetes",
       "Celiac"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l15",
@@ -996,7 +1040,8 @@
     ],
     "safeFor": [
       "Hypertension"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "l16",
@@ -1017,7 +1062,8 @@
     ],
     "safeFor": [
       "Diabetes"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d15",
@@ -1043,7 +1089,8 @@
     "safeFor": [
       "Hypertension",
       "Celiac"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d16",
@@ -1067,7 +1114,8 @@
       "Diabetes",
       "Celiac",
       "Hypertension"
-    ]
+    ],
+    "diet": "vegetarian"
   },
   {
     "id": "d17",
@@ -1091,6 +1139,413 @@
     ],
     "safeFor": [
       "Diabetes"
+    ],
+    "diet": "vegetarian"
+  },
+  {
+    "id": "bNV1",
+    "type": "Breakfast",
+    "diet": "non-vegetarian",
+    "title": "Chicken Keema Paratha",
+    "desc": "Whole wheat paratha stuffed with spiced minced chicken and herbs.",
+    "cals": 520,
+    "protein": 35,
+    "carbs": 48,
+    "fat": 18,
+    "weather": [
+      "all"
+    ],
+    "festivals": [],
+    "countries": [
+      "IN"
+    ],
+    "safeFor": []
+  },
+  {
+    "id": "bNV2",
+    "type": "Breakfast",
+    "diet": "non-vegetarian",
+    "title": "Egg Bhurji with Toast",
+    "desc": "Spiced scrambled eggs with onions, tomatoes, chillies, served with toast.",
+    "cals": 380,
+    "protein": 20,
+    "carbs": 35,
+    "fat": 16,
+    "weather": [
+      "all"
+    ],
+    "festivals": [],
+    "countries": [
+      "IN",
+      "US",
+      "UK"
+    ],
+    "safeFor": []
+  },
+  {
+    "id": "bNV3",
+    "type": "Breakfast",
+    "diet": "non-vegetarian",
+    "title": "Smoked Salmon Bagel",
+    "desc": "Toasted bagel with cream cheese, smoked salmon, capers and red onion.",
+    "cals": 420,
+    "protein": 28,
+    "carbs": 40,
+    "fat": 14,
+    "weather": [
+      "cold",
+      "warm"
+    ],
+    "festivals": [],
+    "countries": [
+      "US",
+      "UK",
+      "CA"
+    ],
+    "safeFor": []
+  },
+  {
+    "id": "lNV1",
+    "type": "Lunch",
+    "diet": "non-vegetarian",
+    "title": "Butter Chicken Rice Bowl",
+    "desc": "Creamy tomato-based butter chicken served over fragrant basmati rice.",
+    "cals": 680,
+    "protein": 42,
+    "carbs": 65,
+    "fat": 22,
+    "weather": [
+      "all"
+    ],
+    "festivals": [
+      "Diwali",
+      "Birthday",
+      "Anniversary"
+    ],
+    "countries": [
+      "IN",
+      "US",
+      "UK",
+      "CA"
+    ],
+    "safeFor": []
+  },
+  {
+    "id": "lNV2",
+    "type": "Lunch",
+    "diet": "non-vegetarian",
+    "title": "Grilled Chicken Caesar Salad",
+    "desc": "Crispy romaine lettuce, grilled chicken breast, parmesan shavings with Caesar dressing.",
+    "cals": 450,
+    "protein": 38,
+    "carbs": 18,
+    "fat": 26,
+    "weather": [
+      "hot",
+      "warm"
+    ],
+    "festivals": [],
+    "countries": [
+      "US",
+      "UK",
+      "CA",
+      "AU"
+    ],
+    "safeFor": [
+      "Diabetes",
+      "Hypertension"
+    ]
+  },
+  {
+    "id": "lNV3",
+    "type": "Lunch",
+    "diet": "non-vegetarian",
+    "title": "Mutton Biryani",
+    "desc": "Aromatic slow-cooked mutton biryani with saffron, fried onions and mint raita.",
+    "cals": 750,
+    "protein": 45,
+    "carbs": 75,
+    "fat": 28,
+    "weather": [
+      "cold",
+      "all"
+    ],
+    "festivals": [
+      "Eid",
+      "Birthday",
+      "Diwali"
+    ],
+    "countries": [
+      "IN",
+      "PK"
+    ],
+    "safeFor": []
+  },
+  {
+    "id": "lNV4",
+    "type": "Lunch",
+    "diet": "non-vegetarian",
+    "title": "Prawn Masala with Chapati",
+    "desc": "Juicy prawns cooked in a rich tomato-onion masala served with whole wheat chapati.",
+    "cals": 550,
+    "protein": 40,
+    "carbs": 45,
+    "fat": 16,
+    "weather": [
+      "all"
+    ],
+    "festivals": [],
+    "countries": [
+      "IN"
+    ],
+    "safeFor": []
+  },
+  {
+    "id": "dNV1",
+    "type": "Dinner",
+    "diet": "non-vegetarian",
+    "title": "Tandoori Chicken with Naan",
+    "desc": "Marinated chicken cooked in a clay oven, served with garlic naan and mint chutney.",
+    "cals": 720,
+    "protein": 55,
+    "carbs": 58,
+    "fat": 24,
+    "weather": [
+      "all"
+    ],
+    "festivals": [
+      "Birthday",
+      "Anniversary",
+      "Diwali"
+    ],
+    "countries": [
+      "IN",
+      "US",
+      "UK"
+    ],
+    "safeFor": []
+  },
+  {
+    "id": "dNV2",
+    "type": "Dinner",
+    "diet": "non-vegetarian",
+    "title": "Grilled Salmon with Veggies",
+    "desc": "Herb-crusted grilled Atlantic salmon with roasted vegetables and lemon butter.",
+    "cals": 520,
+    "protein": 46,
+    "carbs": 22,
+    "fat": 28,
+    "weather": [
+      "warm",
+      "hot"
+    ],
+    "festivals": [],
+    "countries": [
+      "US",
+      "UK",
+      "CA",
+      "AU"
+    ],
+    "safeFor": [
+      "Diabetes",
+      "Hypertension"
+    ]
+  },
+  {
+    "id": "dNV3",
+    "type": "Dinner",
+    "diet": "non-vegetarian",
+    "title": "Mutton Rogan Josh",
+    "desc": "Slow-braised tender mutton in Kashmiri spices, served with steamed rice.",
+    "cals": 680,
+    "protein": 48,
+    "carbs": 42,
+    "fat": 30,
+    "weather": [
+      "cold"
+    ],
+    "festivals": [
+      "Eid"
+    ],
+    "countries": [
+      "IN",
+      "PK"
+    ],
+    "safeFor": []
+  },
+  {
+    "id": "dNV4",
+    "type": "Dinner",
+    "diet": "non-vegetarian",
+    "title": "Chicken Tikka Masala",
+    "desc": "Tender tikka chicken in a rich, creamy masala sauce with basmati rice.",
+    "cals": 640,
+    "protein": 44,
+    "carbs": 55,
+    "fat": 20,
+    "weather": [
+      "all"
+    ],
+    "festivals": [
+      "Birthday",
+      "Anniversary"
+    ],
+    "countries": [
+      "IN",
+      "UK",
+      "US",
+      "CA"
+    ],
+    "safeFor": []
+  },
+  {
+    "id": "bVG1",
+    "type": "Breakfast",
+    "diet": "vegan",
+    "title": "Chia Seed Pudding Bowl",
+    "desc": "Creamy chia pudding with coconut milk, mango, and granola.",
+    "cals": 340,
+    "protein": 10,
+    "carbs": 52,
+    "fat": 12,
+    "weather": [
+      "hot",
+      "warm"
+    ],
+    "festivals": [],
+    "countries": [
+      "US",
+      "UK",
+      "AU",
+      "CA"
+    ],
+    "safeFor": [
+      "Diabetes"
+    ]
+  },
+  {
+    "id": "bVG2",
+    "type": "Breakfast",
+    "diet": "vegan",
+    "title": "Masala Poha",
+    "desc": "Flattened rice flakes cooked with mustard seeds, peas, turmeric and lemon.",
+    "cals": 290,
+    "protein": 7,
+    "carbs": 55,
+    "fat": 6,
+    "weather": [
+      "all"
+    ],
+    "festivals": [],
+    "countries": [
+      "IN"
+    ],
+    "safeFor": [
+      "Diabetes",
+      "Hypertension"
+    ]
+  },
+  {
+    "id": "lVG1",
+    "type": "Lunch",
+    "diet": "vegan",
+    "title": "Chana Masala with Roti",
+    "desc": "Spiced chickpea curry cooked with tomatoes and onions served with whole wheat roti.",
+    "cals": 480,
+    "protein": 18,
+    "carbs": 72,
+    "fat": 10,
+    "weather": [
+      "all"
+    ],
+    "festivals": [
+      "Navratri",
+      "Diwali"
+    ],
+    "countries": [
+      "IN"
+    ],
+    "safeFor": [
+      "Diabetes",
+      "Hypertension",
+      "Celiac"
+    ]
+  },
+  {
+    "id": "lVG2",
+    "type": "Lunch",
+    "diet": "vegan",
+    "title": "Buddha Bowl",
+    "desc": "Roasted chickpeas, quinoa, avocado, cucumber, and tahini dressing.",
+    "cals": 520,
+    "protein": 20,
+    "carbs": 58,
+    "fat": 22,
+    "weather": [
+      "hot",
+      "warm"
+    ],
+    "festivals": [],
+    "countries": [
+      "US",
+      "UK",
+      "AU",
+      "CA"
+    ],
+    "safeFor": [
+      "Diabetes",
+      "Celiac"
+    ]
+  },
+  {
+    "id": "dVG1",
+    "type": "Dinner",
+    "diet": "vegan",
+    "title": "Dal Tadka with Jeera Rice",
+    "desc": "Yellow lentil dal tempered with cumin, garlic and dried chillies, with cumin rice.",
+    "cals": 520,
+    "protein": 22,
+    "carbs": 78,
+    "fat": 10,
+    "weather": [
+      "all"
+    ],
+    "festivals": [
+      "Diwali",
+      "Navratri"
+    ],
+    "countries": [
+      "IN"
+    ],
+    "safeFor": [
+      "Diabetes",
+      "Hypertension",
+      "Celiac"
+    ]
+  },
+  {
+    "id": "dVG2",
+    "type": "Dinner",
+    "diet": "vegan",
+    "title": "Coconut Vegetable Curry",
+    "desc": "Mixed vegetables in a rich coconut milk and lemongrass curry with jasmine rice.",
+    "cals": 460,
+    "protein": 12,
+    "carbs": 65,
+    "fat": 18,
+    "weather": [
+      "cold",
+      "warm"
+    ],
+    "festivals": [],
+    "countries": [
+      "IN",
+      "US",
+      "UK",
+      "AU"
+    ],
+    "safeFor": [
+      "Celiac"
     ]
   }
 ]
